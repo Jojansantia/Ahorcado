@@ -1,20 +1,9 @@
 import React from 'react';
 
-const Boton = ({letra, guardarLetra, nuevaLetra, frase, cambiarIntento}) => {
+const Boton = ({letra, handleChange, guardarLetra, nuevaLetra, frase, cambiarIntento, cambiarAcierto}) => {
 
     
-    const handleChange = e =>{
-        guardarLetra([
-            ...nuevaLetra,
-            e.target.value
-        ])
-
-       let a= frase.find(elem => elem === e.target.value)
-       if(a === undefined){
-        cambiarIntento(true)
-       }
-       
-    }
+    
 
     let inactiva = false;
 
@@ -22,7 +11,7 @@ const Boton = ({letra, guardarLetra, nuevaLetra, frase, cambiarIntento}) => {
         inactiva = nuevaLetra.filter( selec => selec === letra);
     }
     
-    let btn =  "w-1/3 my-1 mx-5 border  rounded-md p-1 cursor-pointer text-black uppercase hover:bg-gray-900 hover:text-white "
+    let btn =  "w-1/4 mx-3 my-1 border  rounded-md py-1 cursor-pointer text-black uppercase hover:bg-gray-900 hover:text-white "
     const c1 = "bg-gray-100"
     const c2 = "bg-green-500"
     if (inactiva.length > 0) {
@@ -36,17 +25,13 @@ const Boton = ({letra, guardarLetra, nuevaLetra, frase, cambiarIntento}) => {
 
     return ( 
         <>
-            
-                <input
-                 className={btn}
-                    type="submit"
-                    onClick={handleChange}
-                    name={letra}
-                    value={letra}
-                />
-                    
-                
-            
+            <input
+                className={btn}
+                type="submit"
+                onClick={handleChange}
+                name={letra}
+                value={letra}
+            />
         </>
      );
 }

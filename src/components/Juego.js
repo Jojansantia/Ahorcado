@@ -1,5 +1,4 @@
 import React from 'react';
-import Swal from 'sweetalert2';
 import int1 from '../imagenes/int1.jpg';
 import int2 from '../imagenes/int2.jpg';
 import int3 from '../imagenes/int3.jpg';
@@ -8,41 +7,33 @@ import int5 from '../imagenes/int5.jpg';
 import int6 from '../imagenes/int6.jpg';
 import Palabra from './Palabra';
 
-const Juego = ({intento, palabra, nuevaLetra,guardarIntento,guardarLetra, frase}) => {
+const Juego = ({juego, intento, palabra, nuevaLetra,guardarIntento,guardarLetra, frase}) => {
 
-    
+    const {intentos} = juego
     let imagen = ""
+    
    
-    if (intento === 6) {
+    if (intentos === 6) {
         imagen = int1
-    } else if (intento === 5) {
+    } else if (intentos === 5) {
         imagen = int2
-    } else if (intento === 4) {
+    } else if (intentos === 4) {
         imagen = int3
-    } else if (intento === 3) {
+    } else if (intentos === 3) {
         imagen = int4
-    } else if (intento === 2) {
+    } else if (intentos === 2) {
         imagen = int5
-    } else if (intento === 1) {
+    } else if (intentos === 1) {
         imagen = int6
     }else{
-        Swal.fire(
-            'Perdiste',
-            'Has usado todos tus intentos',
-            'error'
-        );
-        nuevaLetra.length = 0
-        guardarIntento(6)
-        
+        imagen = int6
     }
     
-    
-
     return ( 
         <>
             <div className="container  border mr-1   ">
                 <h1 className="text-center my-5 text-gray-700 text-3xl font-bold  uppercase">
-                    Tienes {intento} intentos
+                    Tienes {intentos} intentos
                 </h1>
                 <img src={imagen} className="m-auto mb-10"  alt=""  />
                 <Palabra
