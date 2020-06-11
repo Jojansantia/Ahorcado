@@ -1,25 +1,67 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState, useEffect } from 'react';
+import Header from './components/Header';
+import Botones from './components/Botones';
+import Juego from './components/Juego';
 function App() {
+
+  const [palabra, guardarPalabra] = useState({
+    letra1:'',
+    letra2:'',
+    letra3:'',
+    letra4:'',
+    letra5:'',
+    letra6:'',
+  });
+  const [frase] = useState([
+    's',
+    'y',
+    's',
+    't',
+    'e',
+    'm',
+  ]);
+  const [nuevaLetra, guardarLetra] = useState([]);
+  const [intento, guardarIntento] = useState(1);
+  const [ cambiar, cambiarIntento ] = useState(false);
+
+  useEffect(() => {
+    if(cambiar) {
+
+        // agrega el nuevo alumno
+        guardarIntento(
+          intento + 1
+        );
+        // Resetear a false
+        cambiarIntento(false);
+    }
+  }, [cambiar, cambiarIntento, intento]);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="mb-5 mx-5 md:m-auto md:w-4/5">
+        <div className=" container-fluid  m-auto">
+         <Header/>
+        </div>
+      
+        <div className=" container-fluid flex  justify-center">
+          <Juego 
+          palabra={palabra}
+          nuevaLetra={nuevaLetra}
+          guardarLetra={guardarLetra}
+          guardarPalabra={guardarPalabra}
+          frase={frase}
+          intento={intento}
+          guardarIntento={guardarIntento}
+          />  
+          <Botones
+          nuevaLetra={nuevaLetra}
+          guardarLetra={guardarLetra}
+          frase={frase}
+          cambiarIntento={cambiarIntento}
+          /> 
+        </div>
+      </div>
+    </>
   );
 }
 
