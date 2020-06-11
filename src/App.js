@@ -10,11 +10,11 @@ function App() {
   
 
   const [palabra] = useState([
-      ['E','X','A','M','E','N'],
+      ['G','R','A','P','H','Q','L'],
       ['R','E','A','C','T'],
       ['J','A','V','A','S','C','R','I','P','T'],
-      ['L','E','T','R','A','S'],
-      ['S','E','M','A','N','A'],
+      ['P','Y','T','H','O','N'],
+      ['P','A','R','A','L','E','L','A'],
       ['S','I','S','T','E','M','A']
   ]);
   const [nuevaLetra, guardarLetra] = useState([]);
