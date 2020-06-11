@@ -13,10 +13,19 @@ const Palabra = ({guardarIntento, nuevaLetra, frase}) => {
     if(letra1 && letra2 && letra3 && letra4 && letra5 && letra6){
         Swal.fire(
             'Ganaste',
-            'Adiviniaste la palabra',
+            'Adivinaste la palabra',
             'success'
         );
-        guardarIntento(1)
+        
+        nuevaLetra.length = 0
+        guardarIntento(6)
+
+        letra1 = ''
+        letra2 = ''
+        letra3 = ''
+        letra4 = ''
+        letra5 = ''
+        letra6 = ''
     }
     
 

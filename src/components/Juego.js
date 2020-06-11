@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Swal from 'sweetalert2';
 import int1 from '../imagenes/int1.jpg';
 import int2 from '../imagenes/int2.jpg';
@@ -8,28 +8,22 @@ import int5 from '../imagenes/int5.jpg';
 import int6 from '../imagenes/int6.jpg';
 import Palabra from './Palabra';
 
-const Juego = ({intento, palabra, nuevaLetra,guardarIntento, frase}) => {
+const Juego = ({intento, palabra, nuevaLetra,guardarIntento,guardarLetra, frase}) => {
 
     
     let imagen = ""
-   console.log(frase);
-console.log(nuevaLetra);
-
    
-  let asd = frase.filter(elem => elem === nuevaLetra)
-   console.log(asd);
-   
-    if (intento === 1) {
+    if (intento === 6) {
         imagen = int1
-    } else if (intento === 2) {
-        imagen = int2
-    } else if (intento === 3) {
-        imagen = int3
-    } else if (intento === 4) {
-        imagen = int4
     } else if (intento === 5) {
+        imagen = int2
+    } else if (intento === 4) {
+        imagen = int3
+    } else if (intento === 3) {
+        imagen = int4
+    } else if (intento === 2) {
         imagen = int5
-    } else if (intento === 6) {
+    } else if (intento === 1) {
         imagen = int6
     }else{
         Swal.fire(
@@ -37,7 +31,9 @@ console.log(nuevaLetra);
             'Has usado todos tus intentos',
             'error'
         );
-        guardarIntento(1)
+        nuevaLetra.length = 0
+        guardarIntento(6)
+        
     }
     
     

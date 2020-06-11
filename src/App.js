@@ -21,15 +21,16 @@ function App() {
     'm',
   ]);
   const [nuevaLetra, guardarLetra] = useState([]);
-  const [intento, guardarIntento] = useState(1);
+  const [intento, guardarIntento] = useState(6);
   const [ cambiar, cambiarIntento ] = useState(false);
+  
 
   useEffect(() => {
     if(cambiar) {
 
         // agrega el nuevo alumno
         guardarIntento(
-          intento + 1
+          intento - 1
         );
         // Resetear a false
         cambiarIntento(false);
