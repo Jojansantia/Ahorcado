@@ -1,43 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
-
 import Header from './components/Header';
 import Boton from './components/Boton';
 import Juego from './components/Juego';
 function App() {
 
- 
-  
-
-  const [palabra] = useState([
+  const [palabras] = useState([
       ['G','R','A','P','H','Q','L'],
       ['R','E','A','C','T'],
       ['J','A','V','A','S','C','R','I','P','T'],
       ['P','Y','T','H','O','N'],
       ['P','A','R','A','L','E','L','A'],
-      ['S','I','S','T','E','M','A']
+      ['S','I','S','T','E','M','A'],
+      ['T','E','S','L','A'],
+      ['A','N','G','U','L','A','R'],
+      ['T','Y','P','E','S','C','R','I','P','T'],
+      ['A','P','O','L','L','O'],
+      ['D','I','S','T','R','I','B','U','I','D','A']
   ]);
   const [nuevaLetra, guardarLetra] = useState([]);
   const [newPalabra, cambiarNewPalabra] = useState(true);
   const [juego, setJuego] = useState({
     letras: ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
-    frase: [],
-    intentos: 6,
+    palabra: [],
+    intentos: 7,
     aciertos: 0,
   })
   
   useEffect(() => {
     if(newPalabra) {
-      const rnd = parseInt( Math.random() * 5 + 1);
+      const rnd = Math.round(Math.random()*10);
         setJuego({
           ...juego,
-          frase: palabra[rnd-1]     })
+          palabra: palabras[rnd-1]
+        })
       cambiarNewPalabra(false)
     }
-  }, [palabra,juego, newPalabra]);
+  }, [palabras,juego, newPalabra]);
   
-  const evaluar = ( e) => {
-    let a= juego.frase.filter(elem => elem === e.target.value)
+  const evaluar = ( e ) => {
+    let a= juego.palabra.filter(elem => elem === e.target.value)
     if(a.length === 0){
      setJuego({
        ...juego,
@@ -49,6 +51,11 @@ function App() {
     }
   }
   
+  const reiniciar = () => {
+    nuevaLetra.length = 0
+    juego.intentos = 7
+    juego.aciertos = 0
+  }
   const handleChange = e =>{
     guardarLetra([
         ...nuevaLetra,
@@ -58,19 +65,15 @@ function App() {
   }
 
   if(juego.intentos === 0) {
-    nuevaLetra.length = 0
-    juego.intentos = 6
-    juego.aciertos = 0
+    reiniciar()
     Swal.fire(
       'Perdiste',
       'Has usado todos tus intentos',
       'error'
     );
   }
-  if(juego.aciertos === juego.frase.length && juego.aciertos !== 0){
-    nuevaLetra.length = 0
-    juego.intentos = 6
-    juego.aciertos = 0
+  if(juego.aciertos === juego.palabra.length && juego.aciertos !== 0){
+    reiniciar()
     Swal.fire(
       'Ganaste',
       'Has logrado decifrar la palabra',
@@ -90,7 +93,7 @@ function App() {
           juego={juego}
           nuevaLetra={nuevaLetra}
           guardarLetra={guardarLetra}
-          frase={juego.frase}
+          palabra={juego.palabra}
           />  
           <div className=" text-center container  border ml-1 ">
             {
@@ -100,7 +103,7 @@ function App() {
                   letra={letra} 
                   nuevaLetra={nuevaLetra}
                   guardarLetra={guardarLetra}
-                  frase={juego.frase}
+                  palabra={juego.palabra}
                   handleChange={handleChange}
                    />
               ))
