@@ -19,24 +19,21 @@ function App() {
       ['D','I','S','T','R','I','B','U','I','D','A']
   ]);
   const [nuevaLetra, guardarLetra] = useState([]);
-  const [newPalabra, cambiarNewPalabra] = useState(true);
   const [juego, setJuego] = useState({
     letras: ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
     palabra: [],
     intentos: 7,
     aciertos: 0,
   })
-  
   useEffect(() => {
-    if(newPalabra) {
+    if(juego.palabra.length === 0) {
       const rnd = Math.round(Math.random()*10);
         setJuego({
           ...juego,
           palabra: palabras[rnd-1]
         })
-      cambiarNewPalabra(false)
-    }
-  }, [palabras,juego, newPalabra]);
+      }
+  }, [palabras,juego]);
   
   const evaluar = ( e ) => {
     let a= juego.palabra.filter(elem => elem === e.target.value)
@@ -53,9 +50,14 @@ function App() {
   
   const reiniciar = () => {
     nuevaLetra.length = 0
-    juego.intentos = 7
-    juego.aciertos = 0
+    setJuego({
+      ...juego,
+      palabra : [],
+      intentos : 7,
+      aciertos : 0,
+    })
   }
+
   const handleChange = e =>{
     guardarLetra([
         ...nuevaLetra,
