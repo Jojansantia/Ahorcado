@@ -25,12 +25,13 @@ function App() {
     intentos: 7,
     aciertos: 0,
   })
+  
   useEffect(() => {
     if(juego.palabra.length === 0) {
-      const rnd = Math.round(Math.random()*10);
+      const rnd = Math.floor(Math.random() * 11);
         setJuego({
           ...juego,
-          palabra: palabras[rnd-1]
+          palabra: palabras[rnd]
         })
       }
   }, [palabras,juego]);
@@ -86,18 +87,18 @@ function App() {
   return (
     <>
       <div className="mb-5 mx-5 md:m-auto md:w-4/5">
-        <div className=" container-fluid  m-auto">
+        <div className="container-fluid m-auto">
          <Header/>
         </div>
       
-        <div className=" container-fluid flex  justify-center">
+        <div className="container-fluid flex justify-center">
           <Juego 
           juego={juego}
           nuevaLetra={nuevaLetra}
           guardarLetra={guardarLetra}
           palabra={juego.palabra}
           />  
-          <div className=" text-center container  border ml-1 ">
+          <div className="text-center py-1 container border ml-1 ">
             {
               juego.letras.map( letra => (
                 <Boton 

@@ -8,7 +8,7 @@ const Boton = ({letra, handleChange, nuevaLetra}) => {
         inactiva = nuevaLetra.filter( selec => selec === letra);
     }
     
-    let btn =  "w-1/4 mx-3 my-1 border rounded-md py-1 text-black uppercase hover:bg-gray-900 hover:text-white "
+    let btn =  "w-1/3 md:w-1/4 mx-2 md:mx-3 my-1 border rounded-md py-1 text-black uppercase hover:bg-gray-900 hover:text-white "
     const c1 = "bg-gray-100"
     const c2 = "bg-green-500"
 
